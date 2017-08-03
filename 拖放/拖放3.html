@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge" >
+    <meta name="renderer" content="webkit" >
+    <title>index</title>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <style>
+        .ListRight a{
+            width: 244px;
+            height: 38px;
+            border: 1px solid #e3e3e3;
+            display: block;
+            line-height: 36px;
+            text-align: center;
+            color: #333333;
+        }
+
+        .clearAll {
+            width: 300px;
+            height: 40px;
+            margin-top: 20px;
+            border: 1px solid #000;
+        }
+        .dragEvent {
+            width: 838px;
+            height: 70px;
+            background-color: #7ED321;
+            border-radius: 3px;
+            margin: 4px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+
+            //开始
+            $('.ListRight a').on('dragstart', function (e) {
+               e.originalEvent.dataTransfer.setData('text',"Hello World");
+            });
+            //进入目标元素
+            $('.EventArea').on('dragenter', function (e) {
+                e.preventDefault();
+                console.log("jinru")
+            });
+            //在目标元素上移动
+            $('.EventArea').on('dragover', function (e) {
+                e.preventDefault();
+            });
+            //移出目标元素
+            $('.EventArea').on('dragleave', function () {
+            });
+
+            //被拖拽元素被放置在目标元素上
+            $('.EventArea').on('drop', function (e) {
+                //阻止默认行为
+                e.preventDefault();
+                //阻止默认行为
+                e.stopPropagation();
+                $(this).append('<div class="dragEvent"> ' + e.dataTransfer.getData('text') + ' </div>');
+            });
+
+            //拖拽结束
+            $('.ListRight a').on('dragend', function (e) {
+            });
+        })
+    </script>
+</head>
+<body>
+
+
+<div class="ListRight">
+    <a draggable="true" href="#">顺序执行</a>
+    <a draggable="true" href="#">条件执行</a>
+    <a draggable="true" href="#">顺序执行</a>
+</div>
+
+<div class="clearAll">
+
+</div>
+</body>
+</html>

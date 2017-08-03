@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1 {
+				width: 300px;
+				height: 300px;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div1">
+
+		</div>
+		<p id="drag1" draggable="true">
+			拖动我
+		</p>
+	</body>
+	<script type="text/javascript">
+		//
+		document.querySelector("#drag1").ondragstart = function() {
+			console.log("开始拖放")
+		}
+		//进行放置
+		document.querySelector("#div1").ondrag = function(ev) {
+			ev.preventDefault();
+			console.log("防止了")
+		}
+		document.querySelector("#div1").ondragover = function(ev) {
+			allowDrop(ev);
+		}
+
+		document.querySelector("#div1").ondragend = function() {
+			console.log("结束")
+		}
+
+		document.querySelector("#div1").ondragenter = function() {
+			console.log("进入")
+		}
+		document.querySelector("#div1").ondragleave = function() {
+			console.log("离开")
+		}
+
+		function allowDrop(ev) {
+			ev.preventDefault();
+		}
+	</script>
+
+</html>
