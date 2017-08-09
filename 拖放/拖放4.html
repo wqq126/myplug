@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!--<img draggable="true" src="../img" id="img1" alt="">-->
+		<img draggable="true" src="../img/del.jpg" alt="" id="img1" />
+		<p draggable="true" id="text">圣诞节开发能顺利的烦恼时来得快耐腐蚀的快乐你发了十多年两三点扣年费是考虑到你发来看你</p>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+			var text = document.getElementById("text");
+			console.log(text)
+			text.addEventListener("dragstart",function(){
+				console.log("开始拖动");
+			})
+			
+			
+			
+						var oImg = document.getElementById("img1");
+//						oImg.onmousedown = function(ev) {
+//							var ev = ev || event;
+//							var disX = ev.clientX - this.offsetLeft;
+//							var disY = ev.clientY - this.offsetTop;
+//							if(oImg.setCapture) {
+//								oImg.setCapture();
+//								
+//							}
+//							document.onmousemove = function(ev) {
+//								var ev = ev || event;
+//								oImg.style.left = ev.clientX - disX + 'px';
+//								oImg.style.top = ev.clientY - disY + 'px';
+//							};
+//							document.onmouseup = function(ev) {
+//								document.onmousemove = document.onmouseup = null;
+//								if(oImg.releaseCapture) { //取消全局捕获
+//									　　
+//									oImg.releaseCapture();
+//								}
+//							};
+//			
+//							return false;　　
+//						}
+
+		}
+	</script>
+
+</html>
