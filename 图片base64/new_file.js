@@ -8,4 +8,39 @@ window.onload=function(){
 //	img.src = "data:image/png:base64,"+base64;
 	img.setAttribute("src",base64);
 	document.body.appendChild(img);
+	$("#save").on("click", function() {
+
+					var img_src = $('img')[0].src;
+
+										DownLoadReportIMG(img_src);
+//					img.onload = function() {
+//						console.log("加载完成")
+//						DownLoadReportIMG(base64);
+//					}
+//					DownLoadReportIMG(base64);
+				})
 }
+function DownLoadReportIMG(imgPathURL) {
+			//如果隐藏IFRAME不存在，则添加  
+			if(!document.getElementById("IframeReportImg"))
+				$('<iframe style="display:none;" id="IframeReportImg" name="IframeReportImg" onload="DoSaveAsIMG();" width="0" height="0" src="about:blank"></iframe>').appendTo("body");
+			if(document.all.IframeReportImg.src != imgPathURL) {
+				//加载图片  
+				document.all.IframeReportImg.src = imgPathURL;
+			} else {
+				//图片直接另存为  
+				DoSaveAsIMG();
+			}
+		}
+
+		function DoSaveAsIMG() {
+			if(document.all.IframeReportImg.src != "about:blank")
+				window.frames["IframeReportImg"].document.execCommand("SaveAs");
+		}
+		//判断是否为ie浏览器  
+		function browserIsIe() {
+			if(!!window.ActiveXObject || "ActiveXObject" in window)
+				return true;
+			else
+				return false;
+		}
