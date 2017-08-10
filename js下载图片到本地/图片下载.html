@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/jquery/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<img download="../img/t_screenshot_17616.jpg" class="qr_img" border="0" width="200" height="200" src="../img/t_screenshot_17616.jpg" alt="W3School">
+		<input download="../img/t_screenshot_17616.jpg" type="button" name="save" id="save" value="下载图片" />
+		<a class="sutmit_btn" href="" class="">sssssss</a>
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			test();
+		})
+
+		function test() {
+			if(browserIsIe()) {
+				$("#save").on("click", function() {
+					var img = new Image();
+					var img_src = $('.qr_img')[0].src;
+					DownLoadReportIMG(img_src);
+				})
+				//				$("#save").trigger("click");
+			} else {
+				var img_src = $('.qr_img')[0].src;
+				$('.down_qr').attr('download', img_src);
+				$('.down_qr').attr('href', img_src);
+				$('.sutmit_btn').on('click', function() {
+					$('.sutmit_btn').attr('download', img_src);
+					$('.sutmit_btn').attr('href', img_src);
+				});
+				$('.sutmit_btn').trigger("click");
+			}
+		}
+
+		function DownLoadReportIMG(imgPathURL) {
+			//如果隐藏IFRAME不存在，则添加  
+			if(!document.getElementById("IframeReportImg"))
+				$('<iframe style="display:none;" id="IframeReportImg" name="IframeReportImg" onload="DoSaveAsIMG();" width="0" height="0" src="about:blank"></iframe>').appendTo("body");
+			if(document.all.IframeReportImg.src != imgPathURL) {
+				//加载图片  
+				document.all.IframeReportImg.src = imgPathURL;
+			} else {
+				//图片直接另存为  
+				DoSaveAsIMG();
+			}
+		}
+
+		function DoSaveAsIMG() {
+			if(document.all.IframeReportImg.src != "about:blank")
+				window.frames["IframeReportImg"].document.execCommand("SaveAs");
+		}
+		//判断是否为ie浏览器  
+		function browserIsIe() {
+			if(!!window.ActiveXObject || "ActiveXObject" in window)
+				return true;
+			else
+				return false;
+		}
+	</script>
+
+</html>
