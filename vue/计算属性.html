@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://unpkg.com/vue"></script>
+	</head>
+	<body>
+		<div id="example">
+			<p>姓"{{message}}"</p>
+			<p>名"{{reverseMessage}}"</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm  = new Vue({
+			el:"#example",
+			data:{
+				message:"hello"
+			},
+			computed:{
+				reverseMessage:function(){
+					return this.message.split("").reverse().join("");
+				}
+			}
+		})
+	</script>
+</html>
