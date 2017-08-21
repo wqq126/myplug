@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>签名</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header_inner clearfix">
+            <div class="header_left">
+                <span class="header_left_name">webpack中文指南.pdf</span>
+            </div>
+            <div class="header_right">
+                <!--<input id="saveMsg" type="button" value="Save" class="header_right_save">-->
+            </div>
+        </div>
+    </div>
+    <div class="section clearfix">
+        <div class="section_left">
+            <h3 class="left_title">Select and Drag Icon</h3>
+            <ul class="left_list">
+                <li draggable="true">
+                    <span class="img_outer">
+                        <!--<img src="images/signature.png">-->
+                    </span>
+                    <span class="list_name">
+                        Signature
+                    </span>
+                </li>
+                <li draggable="true">
+                    <span class="img_outer">
+                        <!--<img src="images/pin.png">-->
+                    </span>
+                    <span class="list_name">
+                        PIN
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="section_main">
+            <div class="section_main_pdf">
+               <canvas id="canvas"></canvas>
+            </div>
+            <div class="section_main_page">
+                <div class="page clearfix">
+                    <div class="page_detail">
+                        <input type="button" value="<" class="page_pre">
+                        <span class="page_num">
+                            <span class="page_num_cur">1</span>
+                            /
+                            <span class="total_page">290</span>
+                        </span>
+                        <input type="button" value=">" class="page_next active">
+                    </div>
+                    <div class="page_go">
+                        <span class="page_go_page">Page</span>
+                        <input type="text" class="page_val">
+                        <input type="button" value="GO" class="page_go_val"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section_right">
+            <h3 class="right_title">Select the Signature</h3>
+            <div class="right_select">
+                <select id="selectUser">
+                    <option>Please Select</option>
+                    <option value="spouse">Spouse</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+<!--API解析-->
+<script src="js/pdf.js"></script>
+<!--核心解析-->
+<script src="js/pdf.worker.js"></script>
+<script src="js/signature.js"></script>
+
+<script>
+    /*渲染PDF*/
+    var _container=$(".section_main_pdf");
+    PDFJS.workerSrc='js/pdf.worker.js';
+
+    var config={
+        //url:'txt/userAgreeDoc.pdf',//pdf路径
+        url:'txt/test.pdf',
+        outerHigh:_container.height(),//容器高
+        outerWid:_container.width(),//容器宽
+        defaultPage:1,//默认第一页
+        totalPage:290//总页数
+    };
+</script>
+<script src="js/responseData.js"></script>
+<script>
+</script>
+</body>
+</html>
