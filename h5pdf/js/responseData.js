@@ -168,16 +168,20 @@ $(function(){
         var loadingTask=PDFJS.getDocument(config.url);
         loadingTask.promise.then(
             function getPdf(pdf){
+            	console.log(pdf)
             	var totalPage = pdf.pdfInfo.numpages;
             	$(".total_page").html(pdf.pdfInfo.numPages)
                 pdf.getPage(config.defaultPage).then(
                     function getPage(page){
+                    	console.log(page)
                         var scale=1;
                         var viewport=page.getViewport(scale);
                         var canvas=document.getElementById('canvas');
                         var context=canvas.getContext('2d');
-                        canvas.height=config.outerHigh;
-                        canvas.width=config.outerWid;
+//                      canvas.height=config.outerHigh;
+//                      canvas.width=config.outerWid;
+                        canvas.height = viewport.height;
+                    	canvas.width = viewport.width;
                         var renderContext={
                             canvasContext:context,
                             viewport:viewport
