@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../h5pdf/js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.list {
+				width: 300px;
+			}
+			
+			ul,
+			li {
+				list-style-type: none;
+				cursor: pointer;
+			}
+			
+			li {
+				padding-left: 30px;
+				position: relative;
+			}
+			
+			.my_acc_li1 {
+				margin-top: 10px;
+				background: orange;
+				line-height: 30px;
+			}
+			
+			.my_acc_li1 a {
+				margin: 0;
+				display: inline-block;
+				height: 30px;
+				line-height: 30px;
+			}
+			
+			.my_acc_close {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-image: url(images/off.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: 15px;
+			}
+			
+			.my_acc_open {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-image: url(images/on.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: 15px;
+			}
+			
+			.my_acc ul {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="list">
+			<ul class="my_acc">
+				<li class="my_acc_li1">
+					<a>中国</a>
+					<i class="my_acc_close"></i>
+					<ul>
+						<li class="">
+							<a>杭州</a>
+							<i class="my_acc_close"></i>
+							<ul>
+								<li>
+									<a>摄像头1</a>
+									<i class="my_acc_close"></i>
+
+								</li>
+							</ul>
+
+						</li>
+						<li>
+							<a>深真</a>
+							<i class="my_acc_close"></i>
+							<ul>
+								<li>
+									<a>摄像头1</a>
+									<i class="my_acc_close"></i>
+
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a>巢湖</a>
+							<i class="my_acc_close"></i>
+							<ul>
+								<li>
+									<a>摄像头1</a>
+									<i class="my_acc_close"></i>
+
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a>合肥</a>
+							<i class="my_acc_close"></i>
+							<ul>
+								<li>
+									<a>摄像头1</a>
+									<i class="my_acc_close"></i>
+
+								</li>
+							</ul>
+
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$('.my_acc').on('click', 'li', function(e) {
+			e.stopPropagation();
+			var isShow = $(this).children('ul').css('display');
+			if(isShow=='none'){
+				$(this).children('ul').show();
+				$(this).siblings().children('ul').hide();
+				$(this).siblings().children('i').addClass('my_acc_close');
+				$(this).siblings().children('i').removeClass('my_acc_open');
+				$(this).children('i').removeClass('my_acc_close')
+				$(this).children('i').addClass('my_acc_open');
+			}else{
+				$(this).children('ul').hide();
+				$(this).children('i').addClass('my_acc_close');
+				$(this).children('i').removeClass('my_acc_open');
+				$(this).find('ul').hide();
+				$(this).find('i').addClass('my_acc_close');
+				$(this).find('i').removeClass('my_acc_open');
+			}
+			return false;
+			
+			
+		})
+	</script>
+
+</html>
