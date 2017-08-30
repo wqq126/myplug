@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+//		window.onload = function()({
+//			var Folder = Shell.NameSpace("C:\\");
+//			console.log(Folder)
+//			
+//		})
+		window.onload = function(){
+			var Folder = BrowseFolder();
+			console.log(Folder)
+		}
+		function BrowseFolder() {
+			var Message = "清选择文件夹";
+
+			var Shell = new ActiveXObject("Shell.Application");
+			var Folder = Shell.BrowseForFolder(0, Message, 0x0040, 0x11);
+			if(Folder != null) {
+				Folder = Folder.items(); // 返回 FolderItems 对象
+				Folder = Folder.item(); // 返回 Folderitem 对象
+				Folder = Folder.Path; // 返回路径
+				if(Folder.charAt(varFolder.length - 1) != "\\") {
+					Folder = varFolder + "\\";
+				}
+				return Folder;
+			}
+		}
+	</script>
+
+</html>
