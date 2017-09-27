@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				flex-wrap: nowrap;
+				white-space: nowrap;
+				height: 500px;
+				width: 500px;
+				border: 1px solid green;
+				overflow: hidden;
+				position: relative;
+			}
+			.ss{
+				position: absolute;
+				top: 0;
+				
+				display: inline-block;
+				float: left;
+				width: 500px;
+				height: 500px;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="range" />
+		<div class="box">
+			<span class="ss">1</span>
+			<span class="ss">2</span>
+			<span class="ss">3</span>
+		</div>
+	</body>
+
+</html>
+<style type="text/css">
+	/*滚动条*/
+	::-webkit-slider-runnable-track {
+		height: 20px;
+		border: 1px solid #a0b3d6;
+		background: #f0f3f9;
+	}
+	
+	::-webkit-slider-thumb {
+		border-radius:50% ;
+		outline: 1px dotted #a0b3d6;
+		background-color: #34538b;
+	}
+	/*::-webkit-slider-runnable-track:hover {
+    background-color: #cad5eb;
+}*/
+	
+	::-moz-range-track {
+		border: 1px solid #a0b3d6;
+		height: 20px;
+		background: #f0f3f9;
+	}
+	
+	::-moz-range-thumb {
+		background: #34538b;
+		height: 30px;
+	}
+	
+	::-ms-fill-lower {
+		background: orange;
+	}
+	
+	::-ms-fill-upper {
+		background: green;
+	}
+	
+	::-ms-thumb {
+		background: red;
+	}
+	
+	::-ms-ticks-before {
+		display: block;
+		color: black;
+	}
+	
+	::-ms-ticks-after {
+		display: block;
+		color: blue;
+	}
+	
+	::-ms-track {
+		padding: 5px;
+	}
+	
+	::-ms-tooltip {
+		display: none;
+		/* 数值提示 只能是display或visibility */
+	}
+</style>
