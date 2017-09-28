@@ -1,0 +1,11 @@
+.public,
+nav ul {
+  width: 100px;
+  height: 100px;
+}
+nav ul {
+  list-style: none;
+}
+nav li {
+  color: red;
+}
