@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="dropzone.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="/file-upload" class="dropzone">
+			<div class="fallback">
+				<input type="" name="file" multiple="multiple" id="fi" value="" />
+			</div>
+		</form>
+	</body>
+	<script type="text/javascript">
+		var myDropzone = new Dropzone("div#myId",{url:"/file/post"});
+	</script>
+</html>
