@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#myCheck+label {
+				background-color: white;
+				border-radius: 5px;
+				border: 1px solid #d3d3d3;
+				width: 20px;
+				height: 20px;
+				display: inline-block;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 20px;
+			}
+			
+			#myCheck:checked+label {
+				background-color: #eee;
+			}
+			
+			#myCheck:checked+label:after {
+				content: "\2714";
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="checkbox" id="myCheck">
+		<label for=""></label>
+	</body>
+
+</html>
