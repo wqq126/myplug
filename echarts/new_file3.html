@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>ECharts</title>
+		<!-- 引入 echarts.js -->
+		<script src="jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="echarts.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<div id="main" style="width: 600px;height:400px;"></div>
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例    
+			var myChart = echarts.init(document.getElementById('main')); //定义折线图显示的位置对象  
+			var url = 'http://192.168.2.230:3985/api/v1/summaries';
+
+			function randomData() {
+				now = new Date(+now + oneDay);
+				value = value + Math.random() * 21 - 10;
+				var data = {};
+				$.ajax({
+					type: "get",
+					url: url,
+					dataType: 'jsonp',
+					processData: false,
+					async: false,
+					success: function(res) {
+						if(res.code == '0') {
+							var data = res.data.system;
+							var net_sendi_bytes = data.net_sendi_bytes;
+							var net_recvi_bytes = data.net_recvi_bytes;
+							var recvi = net_recvi_bytes / Math.pow(2, 20);
+							var sendi = net_sendi_bytes / Math.pow(2, 20);
+							data = {
+								name: now.toString(),
+								value: [
+									[now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
+									Math.round(value)
+								]
+
+							}
+
+						}
+					}
+				});
+				console.log(data)
+				return {
+					name: now.toString(),
+
+					value: [
+						[now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
+						Math.round(value)
+					]
+
+				}
+			}
+
+			var data = [];
+			var now = +new Date(1997, 9, 3);
+			var oneDay = 24 * 3600 * 1000;
+			var value = Math.random() * 1000;
+			for(var i = 0; i < 1000; i++) {
+				data.push(randomData());
+			}
+
+			option = {
+				title: {
+					text: '动态数据 + 时间坐标轴'
+				},
+				tooltip: {
+					trigger: 'axis',
+					formatter: function(params) {
+						params = params[0];
+						var date = new Date(params.name);
+						return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+					},
+					axisPointer: {
+						animation: false
+					}
+				},
+				xAxis: {
+					type: 'time',
+					splitLine: {
+						show: false
+					}
+				},
+				yAxis: {
+					type: 'value',
+					boundaryGap: [0, '100%'],
+					splitLine: {
+						show: false
+					}
+				},
+				series: [{
+					name: '模拟数据',
+					type: 'line',
+					showSymbol: false,
+					hoverAnimation: false,
+					data: data
+				}]
+			};
+
+			setInterval(function() {
+
+				for(var i = 0; i < 5; i++) {
+					data.shift();
+					data.push(randomData());
+				}
+				myChart.setOption(option);
+			}, 1000);
+		</script>
+	</body>
+
+</html>
